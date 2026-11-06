@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Management System</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>STUDENT MANAGEMENT SYSTEM</h1>
+        <p>Student Records and Administration Portal</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="list.html">All Students</a>
+        <a href="listOne.html">Search Student</a>
+        <a href="insert.html">Add Student</a>
+        <a href="update.html">Update Records</a>
+        <a href="delete.html">Delete Records</a>
+    </nav>
+
+    <main>
+
+        <section class="welcome-section">
+    <div class="welcome-content">
+        <p class="section-label">STUDENT ADMINISTRATION PORTAL</p>
+
+        <h2>Manage Student Records<br>With Confidence</h2>
+
+        <p>
+            A centralized platform to maintain student information,
+            search academic records, register students, and update
+            details efficiently.
+        </p>
+
+        <button onclick="location.href='list.html'">
+            View Student Records
+        </button>
+
+        <button onclick="location.href='insert.html'">
+            Register New Student
+        </button>
+    </div>
+
+    <div class="welcome-image">
+        <img src="images/students.png"
+             alt="College students studying together">
+    </div>
+</section>
+
+        <section class="dashboard-section">
+
+            <h2>Student Management Services</h2>
+
+            <p class="section-description">
+                Select an operation to manage your student database.
+            </p>
+
+            <div class="dashboard">
+
+                <div class="dashboard-card">
+                    <h3>01 / Student Directory</h3>
+                    <p>
+                        View the complete list of registered students,
+                        including student IDs, names, and total marks.
+                    </p>
+                    <a href="list.html">View Directory →</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>02 / Search Records</h3>
+                    <p>
+                        Retrieve an individual student's information
+                        using their unique student identification number.
+                    </p>
+                    <a href="listOne.html">Search Records →</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>03 / Student Registration</h3>
+                    <p>
+                        Add a new student to the database by entering
+                        their identification number, name, and marks.
+                    </p>
+                    <a href="insert.html">Register Student →</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>04 / Update Information</h3>
+                    <p>
+                        Edit the details of an existing student and
+                        keep database information up to date.
+                    </p>
+                    <a href="update.html">Update Details →</a>
+                </div>
+
+                <div class="dashboard-card">
+                    <h3>05 / Record Management</h3>
+                    <p>
+                        Remove a student record when necessary
+                        and maintain an organized database.
+                    </p>
+                    <a href="delete.html">Manage Records →</a>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="information-section">
+            <h2>Designed for Efficient Record Management</h2>
+
+            <div class="information-grid">
+
+                <div>
+                    <h3>Centralized Database</h3>
+                    <p>
+                        Student information is managed through a
+                        MySQL database connected to an Express.js server.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Simple Navigation</h3>
+                    <p>
+                        Access student listing, searching, insertion,
+                        updating, and deletion from one interface.
+                    </p>
+                </div>
+
+                <div>
+                    <h3>Reliable Operations</h3>
+                    <p>
+                        Each operation communicates with the backend
+                        to perform the requested database action.
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <h3>STUDENT MANAGEMENT SYSTEM</h3>
+        <p>Student Records | Database Administration | Academic Management</p>
+        <p>&copy; 2026 Student Management System</p>
+    </footer>
+
+</body>
+</html>

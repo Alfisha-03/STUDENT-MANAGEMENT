@@ -1,0 +1,106 @@
+
+<!-- To list all students data -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>List Students</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>STUDENT MANAGEMENT SYSTEM</h1>
+        <p>Student Records and Administration Portal</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a> |
+        <a href="list.html">List Students</a> |
+        <a href="listOne.html">List Required Student</a> |
+        <a href="insert.html">Insert Student</a> |
+        <a href="update.html">Update Student</a> |
+        <a href="delete.html">Delete Student</a>
+    </nav>
+
+    <hr>
+
+    <h2>List of Students</h2>
+
+    <p>View all student records stored in the database.</p>
+
+    <button onclick="loadStudents()">
+        Refresh List
+    </button>
+
+    <div class="table-container">
+        <table id="studentTable">
+            <tr>
+                <th>Student Number</th>
+                <th>Student Name</th>
+                <th>Total Marks</th>
+            </tr>
+        </table>
+    </div>
+
+    <br>
+
+    <button type="button"
+            onclick="location.href='index.html'">
+        Home Page
+    </button>
+
+    <script>
+        loadStudents();
+
+        function loadStudents() {
+
+            fetch("/students")
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Unable to load students.");
+                }
+                return response.json();
+            })
+            .then(data => {
+
+                let table = document.getElementById("studentTable");
+
+                table.innerHTML = `
+                    <tr>
+                        <th>Student Number</th>
+                        <th>Student Name</th>
+                        <th>Total Marks</th>
+                    </tr>
+                `;
+
+                if (data.length === 0) {
+                    table.innerHTML += `
+                        <tr>
+                            <td colspan="3">No students found.</td>
+                        </tr>
+                    `;
+                    return;
+                }
+
+                data.forEach(student => {
+                    let row = table.insertRow();
+
+                    [student.student_id,
+                     student.student_name,
+                     student.total].forEach(value => {
+                        let cell = row.insertCell();
+                        cell.textContent = value ?? "";
+                    });
+                });
+
+            })
+            .catch(error => {
+                alert(error.message);
+            });
+        }
+    </script>
+
+</body>
+</html>

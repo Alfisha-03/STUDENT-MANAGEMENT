@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Student | Student Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>STUDENT MANAGEMENT SYSTEM</h1>
+        <p>Student Records and Administration Portal</p>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="list.html">All Students</a>
+        <a href="listOne.html">Search Student</a>
+        <a href="insert.html">Add Student</a>
+        <a href="update.html">Update Records</a>
+        <a href="delete.html">Delete Records</a>
+    </nav>
+
+    <main>
+        <section class="dashboard-section">
+            <h2>Find Student Record</h2>
+            <p class="section-description">
+                Search the student database to retrieve a record.
+            </p>
+
+            <form id="searchForm">
+                <label for="sno">Student Identification Number</label>
+                <input
+                    type="number"
+                    id="sno"
+                    name="sno"
+                    placeholder="Enter student ID"
+                    required
+                >
+
+                <button type="submit">Search Record</button>
+            </form>
+
+            <section id="searchResult" hidden>
+                <h3>Search Result</h3>
+                <div id="studentDetails"></div>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <h3>STUDENT MANAGEMENT SYSTEM</h3>
+        <p>Student Records | Database Administration | Academic Management</p>
+        <p>&copy; 2026 Student Management System</p>
+    </footer>
+
+    <script>
+        const searchForm = document.getElementById("searchForm");
+        const searchResult = document.getElementById("searchResult");
+        const studentDetails = document.getElementById("studentDetails");
+
+        searchForm.addEventListener("submit", async function(event) {
+            event.preventDefault();
+
+            const sno = document.getElementById("sno").value;
+
+            studentDetails.textContent = "Searching...";
+            searchResult.hidden = false;
+
+            try {
+                const response = await fetch(
+                    "/students/" + encodeURIComponent(sno)
+                );
+
+                if (!response.ok) {
+                    throw new Error("Unable to retrieve student record.");
+                }
+
+                const data = await response.json();
+
+                if (!data || data.length === 0) {
+                    studentDetails.textContent =
+                        "No student record found for this ID.";
+                    return;
+                }
+
+                const student = data[0];
+
+                studentDetails.innerHTML = `
+                    <div class="dashboard-card">
+                        <h3>Student Record Found</h3>
+                        <p><strong>Student ID:</strong> ${student.student_id}</p>
+                        <p><strong>Student Name:</strong> ${student.student_name}</p>
+                        <p><strong>Total Marks:</strong> ${student.total}</p>
+                    </div>
+                `;
+
+            } catch (error) {
+                studentDetails.textContent =
+                    "Could not retrieve the record. Please check the server and try again.";
+            }
+        });
+    </script>
+
+</body>
+</html>
